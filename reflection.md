@@ -150,3 +150,22 @@ In this phase, I implemented automated tests to verify the core functionality of
 Using pytest helped ensure that the system behaves correctly under both normal and edge-case scenarios. It also improved confidence in the reliability and correctness of the scheduling logic.
 
 Overall, this phase demonstrated the importance of automated testing in validating software behavior and preventing future bugs.
+
+## Phase 6 Reflection
+
+In this final phase, I polished the Streamlit user interface and connected it to the backend scheduling logic.
+
+The UI allows the user to:
+
+- create an owner and pet
+- add tasks with title, duration, priority, and due time
+- generate a schedule sorted by due time
+- detect conflicts when multiple tasks have the same due time
+
+I used AI tools such as ChatGPT and Copilot to help with debugging, testing, and improving the UI integration. AI was especially helpful when generating pytest test cases, identifying missing parameters like `due_time`, and resolving Streamlit issues such as duplicate widget IDs.
+
+One important lesson I learned is that AI suggestions must always be reviewed and adapted to match the actual implementation. Some suggested method names did not exist in my code, so I had to compare the recommendations with my real classes and functions before applying them.
+
+Using separate chat sessions for different phases helped me stay organized and focus on one goal at a time. Overall, this project helped me better understand scheduling logic, automated testing, UI integration, and how to work effectively with AI as the human lead architect.
+
+I revisited my initial UML diagram in Phase 6 and updated it to match the final implementation.

@@ -74,3 +74,32 @@ Run the automated test suite using:
 ```bash
 python -m pytest -v
 ```
+
+## Phase 4 Features
+
+## Features
+
+- Add pet care tasks with title, duration, priority, and due time
+- Create an owner and pet in the Streamlit UI
+- Generate schedules sorted by due time
+- Detect scheduling conflicts when multiple tasks share the same time
+- Mark tasks as completed in the backend logic
+- Support recurring tasks such as daily and weekly tasks
+
+## Demo
+
+Below is a screenshot of the PawPal+ app interface:
+
+![App Screenshot](./screenshot.png) | ![App Screenshot](./screenshot1.png) | ![App Screenshot](./screenshot2.png)
+
+## Testing PawPal
+
+Run the automated tests with:
+
+```bash
+streamlit run app.py
+```
+
+## System Architecture
+
+The final UML class diagram for PawPal+ is included in the project as ![App Screenshot](./uml_final.png)

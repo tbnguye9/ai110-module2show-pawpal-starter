@@ -1,5 +1,7 @@
 import streamlit as st
 from pawpal_system import Owner, Pet, Task, Scheduler
+from datetime import datetime
+
 
 if "owner" not in st.session_state:
     st.session_state.owner = None
@@ -65,19 +67,28 @@ st.caption("Add a few tasks. In your final version, these should feed into your 
 if "tasks" not in st.session_state:
     st.session_state.tasks = []
 
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
+
 with col1:
     task_title = st.text_input("Task title", value="Morning walk")
+
 with col2:
     duration = st.number_input("Duration (minutes)", min_value=1, max_value=240, value=20)
+
 with col3:
     priority = st.selectbox("Priority", ["low", "medium", "high"], index=2)
+
+with col4:
+    due_time = st.time_input("Due time")
 
 if st.button("Add task"):
     if st.session_state.pet is None:
         st.warning("Please create the owner and pet first.")
     else:
-        new_task = Task(task_title, int(duration), priority)
+        now = datetime.now()
+        due_datetime = datetime.combine(now.date(), due_time)
+
+        new_task = Task(task_title, int(duration), priority, due_datetime)
         st.session_state.pet.add_task(new_task)
 
         st.session_state.tasks.append(
@@ -88,7 +99,17 @@ if st.button("Add task"):
 
 if st.session_state.tasks:
     st.write("Current tasks:")
-    st.table(st.session_state.tasks)
+
+    st.table([
+        {
+            "Title": t.title,
+            "Time": t.due_time.strftime("%H:%M"),
+            "Duration": t.duration,
+            "Priority": t.priority,
+            "Completed": t.completed
+        }
+        for t in st.session_state.pet.tasks
+    ])
 else:
     st.info("No tasks yet. Add one above.")
 
@@ -104,11 +125,26 @@ if st.button("Generate schedule"):
         scheduler = Scheduler()
 
         all_tasks = scheduler.get_all_tasks(st.session_state.owner)
-        sorted_tasks = scheduler.sort_tasks(all_tasks)
+        sorted_tasks = scheduler.sort_tasks_by_time(all_tasks)
 
         if sorted_tasks:
             st.success("Schedule generated successfully!")
-            for task in sorted_tasks:
-                st.write(f"- {task.title} | {task.duration} mins | {task.priority}")
+            st.table([
+                {
+                    "Title": t.title,
+                    "Time": t.due_time.strftime("%H:%M"),
+                    "Duration": t.duration,
+                    "Priority": t.priority,
+                    "Completed": "✅" if t.completed else "❌"
+                }
+                for t in sorted_tasks
+            ])
+
+            conflicts = scheduler.detect_conflicts(sorted_tasks)
+
+            if conflicts:
+                st.warning("⚠️ Conflict detected! Some tasks have the same time.")
+            else:
+                st.success("✅ No conflicts detected.")
         else:
             st.info("No tasks available.")
