@@ -59,3 +59,10 @@ In this phase, the Streamlit UI (`app.py`) was connected to the backend logic (`
 ```bash
 streamlit run app.py
 ```
+
+## Phase 4 Features
+
+- Sort tasks by due time
+- Filter tasks by completion status and by pet
+- Support recurring tasks (daily, weekly)
+- Detect scheduling conflicts between tasks

@@ -115,3 +115,30 @@ I would improve the scheduling algorithm to consider time constraints and optimi
 
 I learned how to design a system using object-oriented principles and how to collaborate effectively with AI tools.
 Additionally, in Phase 3, I successfully connected the Streamlit UI to the backend logic using session_state. This allowed tasks and pets to persist across interactions and enabled real-time schedule generation.
+
+## Phase 4 – Algorithmic Layer
+
+In Phase 4, I enhanced PawPal+ by adding core algorithmic features including sorting, filtering, recurring task handling, and conflict detection.
+
+### Features Implemented
+
+- Sorting tasks by due time using Python’s built-in `sorted()` function
+- Filtering tasks by completion status and by pet
+- Automatically generating recurring tasks (daily and weekly) when a task is marked complete
+- Detecting scheduling conflicts when two tasks share the same due time
+
+### Design Choices
+
+- I used Python’s `datetime` and `timedelta` to handle time calculations for recurring tasks.
+- I used list comprehensions for filtering because they are concise and readable.
+- I implemented conflict detection using a simple pairwise comparison approach.
+
+### Tradeoffs
+
+- Conflict detection only checks for exact matching times and does not handle overlapping durations.
+- Recurring tasks are only generated when the original task is completed, not automatically over time.
+- The current implementation prioritizes readability over performance.
+
+### Reflection
+
+I focused on keeping the logic simple and easy to understand while still meeting all functional requirements. This approach makes the system easier to maintain and extend in future phases.
