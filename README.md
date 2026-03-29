@@ -66,3 +66,11 @@ streamlit run app.py
 - Filter tasks by completion status and by pet
 - Support recurring tasks (daily, weekly)
 - Detect scheduling conflicts between tasks
+
+## Testing PawPal
+
+Run the automated test suite using:
+
+```bash
+python -m pytest -v
+```

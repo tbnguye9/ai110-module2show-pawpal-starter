@@ -142,3 +142,11 @@ In Phase 4, I enhanced PawPal+ by adding core algorithmic features including sor
 ### Reflection
 
 I focused on keeping the logic simple and easy to understand while still meeting all functional requirements. This approach makes the system easier to maintain and extend in future phases.
+
+## Phase 5 Reflection
+
+In this phase, I implemented automated tests to verify the core functionality of the PawPal system. The tests cover task completion, scheduling, sorting by time, conflict detection, and recurring tasks.
+
+Using pytest helped ensure that the system behaves correctly under both normal and edge-case scenarios. It also improved confidence in the reliability and correctness of the scheduling logic.
+
+Overall, this phase demonstrated the importance of automated testing in validating software behavior and preventing future bugs.
