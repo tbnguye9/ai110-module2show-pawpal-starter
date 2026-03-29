@@ -7,6 +7,16 @@
 - Briefly describe your initial UML design.
 - What classes did you include, and what responsibilities did you assign to each?
 
+The system is designed using four main classes:
+
+- Owner: manages pets
+- Pet: stores tasks for each pet
+- Task: represents a care activity (walk, feed, etc.)
+- Scheduler: generates and organizes tasks into a schedule
+
+The Owner contains multiple Pets, and each Pet contains multiple Tasks.
+The Scheduler collects all tasks and determines their execution order.
+
 **b. Design changes**
 
 - Did your design change during implementation?
