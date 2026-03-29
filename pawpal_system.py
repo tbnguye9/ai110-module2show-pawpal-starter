@@ -9,6 +9,10 @@ class Task:
     priority: str
     completed: bool = False
 
+    def mark_complete(self):
+        self.completed = True
+        
+
 
 # Pet class
 @dataclass
