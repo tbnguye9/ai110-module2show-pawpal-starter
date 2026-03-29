@@ -1,4 +1,14 @@
 import streamlit as st
+from pawpal_system import Owner, Pet, Task, Scheduler
+
+if "owner" not in st.session_state:
+    st.session_state.owner = None
+
+if "pet" not in st.session_state:
+    st.session_state.pet = None
+
+if "tasks" not in st.session_state:
+    st.session_state.tasks = []
 
 st.set_page_config(page_title="PawPal+", page_icon="🐾", layout="centered")
 
@@ -43,6 +53,12 @@ owner_name = st.text_input("Owner name", value="Jordan")
 pet_name = st.text_input("Pet name", value="Mochi")
 species = st.selectbox("Species", ["dog", "cat", "other"])
 
+if st.button("Create Owner and Pet"):
+    st.session_state.owner = Owner(owner_name)
+    st.session_state.pet = Pet(pet_name, species)
+    st.session_state.owner.add_pet(st.session_state.pet)
+    st.success(f"Created owner {owner_name} and pet {pet_name}")
+
 st.markdown("### Tasks")
 st.caption("Add a few tasks. In your final version, these should feed into your scheduler.")
 
@@ -58,9 +74,17 @@ with col3:
     priority = st.selectbox("Priority", ["low", "medium", "high"], index=2)
 
 if st.button("Add task"):
-    st.session_state.tasks.append(
-        {"title": task_title, "duration_minutes": int(duration), "priority": priority}
-    )
+    if st.session_state.pet is None:
+        st.warning("Please create the owner and pet first.")
+    else:
+        new_task = Task(task_title, int(duration), priority)
+        st.session_state.pet.add_task(new_task)
+
+        st.session_state.tasks.append(
+            {"title": task_title, "duration_minutes": int(duration), "priority": priority}
+        )
+
+        st.success(f"Added task: {task_title}")
 
 if st.session_state.tasks:
     st.write("Current tasks:")
@@ -74,15 +98,17 @@ st.subheader("Build Schedule")
 st.caption("This button should call your scheduling logic once you implement it.")
 
 if st.button("Generate schedule"):
-    st.warning(
-        "Not implemented yet. Next step: create your scheduling logic (classes/functions) and call it here."
-    )
-    st.markdown(
-        """
-Suggested approach:
-1. Design your UML (draft).
-2. Create class stubs (no logic).
-3. Implement scheduling behavior.
-4. Connect your scheduler here and display results.
-"""
-    )
+    if st.session_state.owner is None:
+        st.warning("Please create the owner and pet first.")
+    else:
+        scheduler = Scheduler()
+
+        all_tasks = scheduler.get_all_tasks(st.session_state.owner)
+        sorted_tasks = scheduler.sort_tasks(all_tasks)
+
+        if sorted_tasks:
+            st.success("Schedule generated successfully!")
+            for task in sorted_tasks:
+                st.write(f"- {task.title} | {task.duration} mins | {task.priority}")
+        else:
+            st.info("No tasks available.")

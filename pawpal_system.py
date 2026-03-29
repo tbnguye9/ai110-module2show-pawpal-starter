@@ -11,7 +11,10 @@ class Task:
 
     def mark_complete(self):
         self.completed = True
-        
+
+
+    def __str__(self):
+        return f"{self.title} ({self.duration} mins, {self.priority})"     
 
 
 # Pet class
