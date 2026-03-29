@@ -41,3 +41,21 @@ pip install -r requirements.txt
 5. Add tests to verify key behaviors.
 6. Connect your logic to the Streamlit UI in `app.py`.
 7. Refine UML so it matches what you actually built.
+
+## Phase 3: UI and Backend Integration
+
+In this phase, the Streamlit UI (`app.py`) was connected to the backend logic (`pawpal_system.py`).
+
+### Features implemented:
+
+- Users can create an Owner and Pet
+- Users can add tasks with duration and priority
+- Tasks persist using Streamlit `session_state`
+- Scheduler collects tasks from all pets
+- Tasks are sorted by priority and displayed in the UI
+
+### How to run the app
+
+```bash
+streamlit run app.py
+```

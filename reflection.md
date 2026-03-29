@@ -58,15 +58,17 @@ This tradeoff is reasonable because completing important tasks is more critical 
 - What kinds of prompts or questions were most helpful?
 
 I used AI to help design class structures, generate initial code, and debug issues.
-AI was also helpful for creating test cases and improving code organization.
+
+One AI suggestion I modified was how to retrieve tasks. Initially, AI suggested adding a method inside the Pet class, but I decided to use a separate Scheduler class instead. This keeps responsibilities separated and improves system design.
 
 **b. Judgment and verification**
 
 - Describe one moment where you did not accept an AI suggestion as-is.
 - How did you evaluate or verify what the AI suggested?
 
-I used AI to help design class structures, generate initial code, and debug issues.
-AI was also helpful for creating test cases and improving code organization.
+I did not accept one AI suggestion about placing task retrieval logic inside the Pet class. Instead, I moved that logic to a separate Scheduler class to maintain clear separation of responsibilities.
+
+I verified this decision by testing the system and ensuring that tasks were correctly collected and sorted through the Scheduler. This approach made the code more modular and easier to maintain.
 
 ---
 
@@ -112,3 +114,4 @@ I would improve the scheduling algorithm to consider time constraints and optimi
 - What is one important thing you learned about designing systems or working with AI on this project?
 
 I learned how to design a system using object-oriented principles and how to collaborate effectively with AI tools.
+Additionally, in Phase 3, I successfully connected the Streamlit UI to the backend logic using session_state. This allowed tasks and pets to persist across interactions and enabled real-time schedule generation.
