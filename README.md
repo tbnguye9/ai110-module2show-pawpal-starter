@@ -103,3 +103,9 @@ streamlit run app.py
 ## System Architecture
 
 The final UML class diagram for PawPal+ is included in the project as ![App Screenshot](./uml_final.png)
+
+## Challenge 4: Professional UI and Output Formatting
+
+- Enhanced UI with color-coded priority indicators (🔴 high, 🟡 medium, 🟢 low)
+
+![App Screenshot](./challenge4.png)

@@ -169,3 +169,5 @@ One important lesson I learned is that AI suggestions must always be reviewed an
 Using separate chat sessions for different phases helped me stay organized and focus on one goal at a time. Overall, this project helped me better understand scheduling logic, automated testing, UI integration, and how to work effectively with AI as the human lead architect.
 
 I revisited my initial UML diagram in Phase 6 and updated it to match the final implementation.
+
+I improved the UI by adding color-coded priority indicators (🔴, 🟡, 🟢), making the schedule easier to read without changing the underlying logic.

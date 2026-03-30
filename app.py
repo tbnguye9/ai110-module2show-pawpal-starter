@@ -100,13 +100,18 @@ if st.button("Add task"):
 if st.session_state.tasks:
     st.write("Current tasks:")
 
+    priority_display = {
+    "high": "🔴 high",
+    "medium": "🟡 medium",
+    "low": "🟢 low"
+}
     st.table([
         {
             "Title": t.title,
             "Time": t.due_time.strftime("%H:%M"),
             "Duration": t.duration,
-            "Priority": t.priority,
-            "Completed": t.completed
+            "Priority": priority_display[t.priority],
+             "Completed": "✅" if t.completed else "❌"
         }
         for t in st.session_state.pet.tasks
     ])
@@ -129,12 +134,18 @@ if st.button("Generate schedule"):
 
         if sorted_tasks:
             st.success("Schedule generated successfully!")
+
+            priority_display = {
+                "high": "🔴 high",
+                "medium": "🟡 medium",
+                "low": "🟢 low"
+            }
             st.table([
                 {
                     "Title": t.title,
                     "Time": t.due_time.strftime("%H:%M"),
                     "Duration": t.duration,
-                    "Priority": t.priority,
+                    "Priority": priority_display[t.priority],
                     "Completed": "✅" if t.completed else "❌"
                 }
                 for t in sorted_tasks
